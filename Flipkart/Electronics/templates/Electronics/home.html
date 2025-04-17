@@ -1,74 +1,106 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipkart Electronics</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electronics Playground</title>
     <style>
-        .product-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 15px 0;
-            transition: transform 0.2s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-
-        .product-name {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #2874f0;
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            font-size: 1.1rem;
-            color: #388e3c;
-            font-weight: 600;
-        }
-
-        .product-description {
-            color: #666;
-            margin-top: 10px;
-        }
-
-        .header {
-            background: #2874f0;
-            color: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            text-align: center;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    
+    html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+    body {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #faf5f5;
+    background-color: #000;
+    text-align: center;
+    padding: 40px 20px;
+    }
+    a {
+    text-decoration: none;
+    color: #6ecfee;
+    }
+    h1 {
+    color: #6ecfee;
+    font-size: 24px;
+    margin-bottom: 40px;
+    }
+    .grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    }
+    .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    }
+    .product-card {
+    background-color: #0e0d0d;
+    padding: 15px;
+    border: 1px solid #222;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 220px;
+    }
+    .product-name {
+    font-size: 14px;
+    text-align: left;
+    color: #6ecfee;
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    }
+    .product-sku {
+    color: #555;
+    font-size: 11px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    }
+    .product-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    }
+    .product-price {
+    color: #e4a923;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    }
+    .product-stock {
+    font-size: 12px;
+    color: #fff;
+    text-align: right;
+    }
     </style>
-</head>
-<body>
-    <div class="header">
-        <div class="container">
-            <h1>Selling Cars on Flipkart</h1>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            {% for pro in prod %}
-            <div class="col-md-4">
-                <div class="product-card">
-                    <div class="product-name">{{ pro.name }}</div>
-                    <div class="product-price">₹{{ pro.price }}</div>
-                    <div class="product-description">{{ pro.description }}</div>
-                </div>
+  </head>
+  <body>
+    <h1>Electronics Only!</h1>
+    <div class="grid">
+      <div class="products">
+        {% for pro in prod %}
+          <div class="product-card">
+            <div class="product-brand"><a href="https://robu.in">{{pro.brand}}</a></div>
+            <div class="product-name"><a href="https://robu.in">{{pro.name}}</a></div>
+            <div class="product-sku">{{pro.desc}}</div>
+            <div class="product-footer">
+              <div class="product-price">Rs. {{pro.price}}</div>
+              <div class="product-stock">{{pro.stock}}</div>
             </div>
-            {% endfor %}
-        </div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
