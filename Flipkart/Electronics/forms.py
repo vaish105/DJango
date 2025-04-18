@@ -5,4 +5,4 @@ class ProductForm(forms.ModelForm):
     model = Product
     class Meta:
         model=Product
-        fields = '_all_'
+        fields = '__all__'

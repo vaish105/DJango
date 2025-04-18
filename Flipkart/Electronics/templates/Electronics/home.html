@@ -1,109 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Electronics Playground</title>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-    
-    html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto Legends Showcase</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
+
     body {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: #faf5f5;
-    background-color: #000;
-    text-align: center;
-    padding: 40px 20px;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #111 0%, #000 100%);
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
     }
-    a {
-    text-decoration: none;
-    color: #6ecfee;
-    }
+
     h1 {
-    color: #6ecfee;
-    font-size: 24px;
-    margin-bottom: 40px;
+      font-size: 48px;
+      color: #e60012;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
     }
+
     .grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+      max-width: 1300px;
+      margin: auto;
     }
+
     .products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
     }
+
     .product-card {
-    background-color: #0e0d0d;
-    padding: 15px;
-    border: 1px solid #222;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 220px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(255, 0, 60, 0.15);
+      backdrop-filter: blur(15px);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      padding-bottom: 50px; /* Add space for edit button */
     }
+
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 40px rgba(255, 0, 60, 0.4);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
     .product-name {
-    font-size: 14px;
-    text-align: left;
-    color: #6ecfee;
-    font-weight: 400;
-    margin-bottom: 10px;
-    line-height: 1.4;
+      font-size: 20px;
+      color: #00ffe7;
+      margin-bottom: 10px;
     }
+
     .product-sku {
-    color: #555;
-    font-size: 11px;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 10px;
     }
+
     .product-footer {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+
     .product-price {
-    color: #e4a923;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: left;
+      font-size: 18px;
+      color: #ffbf00;
+      font-weight: bold;
     }
+
     .product-stock {
-    font-size: 12px;
-    color: #fff;
-    text-align: right;
+      font-size: 14px;
+      color: #0f0;
     }
-    </style>
-  </head>
-  <body>
-    <h1>Electronics Only!</h1>
-    <div class="grid">
-      <div class="products">
-        {% for pro in prod %}
-          <div class="product-card">
-            <div class="product-brand"><a href="/">{{pro.brand}}</a></div>
-            <div class="product-name"><a href="/">{{pro.name}}</a></div>
-            <div class="product-sku">{{pro.desc}}</div>
-            <div class="product-footer">
-              <div class="product-price">Rs. {{pro.price}}</div>
-              <div class="product-stock">{{pro.stock}}</div>
-            </div>
-          </div>
-        {% endfor %}
+
+    .edit-button {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: linear-gradient(to right, #00ffe7, #00a3ff);
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: opacity 0.3s ease;
+    }
+
+    .edit-button:hover {
+      opacity: 0.9;
+    }
+
+    /* Fix form styling */
+    form {
+      margin-top: 40px;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 0, 60, 0.1);
+      backdrop-filter: blur(15px);
+    }
+
+    .form-container p {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 5px;
+      color: #00ffe7;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-family: 'Orbitron', sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    .form-container input:focus,
+    .form-container select:focus,
+    .form-container textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 255, 231, 0.3);
+    }
+
+    .form-container button {
+      background: linear-gradient(to right, #ff004c, #ff7b00);
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: transform 0.3s ease;
+    }
+
+    .form-container button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <h1>Auto Legends Showcase</h1>
+
+  <div class="grid">
+    <div class="products">
+      {% for item in prod %}
+      <div class="product-card">
+        <!-- <img src="https://cdn.pixabay.com/photo/2021/02/28/21/41/mustang-6061294_1280.jpg" alt="Mustang" class="product-img"> -->
+        <div class="product-name">{{item.name}}</div>
+        <div class="product-sku">{{item.description}}</div>
+        <div class="product-footer">
+          <div class="product-price">{{item.price}}</div>
+          <div class="product-stock">{{item.stock}}</div>
+        </div>
+        <a href="{% url 'edit_product' item.id %}" class="edit-button">Edit</a>
       </div>
+      {% endfor %}
     </div>
-    <div>
-        {{fm.}}
-    </div>
-  </body>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-container">
+            {{ fm.as_p }}
+            <button type="submit">Submit</button>
+          </div>
+    </form>
+  </div>
+</body>
 </html>
