@@ -1,17 +1,78 @@
+edit_product.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit Product</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle at top, #111 0%, #000 100%);
+            color: #fff;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e60012;
+            margin-bottom: 40px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(255, 0, 60, 0.15);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            color: #00ffe7;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        button {
+            background: linear-gradient(to right, #00ffe7, #00a3ff);
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-family: inherit;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-    <h1> Edit Product </h1>
+    <h1>Edit Product</h1>
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
-<button> type = "submit">Submit </button> 
+        {{ fm.as_p }}
+        <button type="submit">Update Product</button>
     </form>
-    
 </body>
 </html>

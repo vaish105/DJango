@@ -18,11 +18,11 @@ def edit_product(request, id):
     prod = Product.objects.get(id=id)   #fetch the product by id
 
     if request.method == "POST":
-        fm = ProductForm(request.POST, instance=prod) #bind the form with the product instance
+        fm = ProductForm(request.POST, instance=prod)
         if fm.is_valid():
-            fm.save()  #save the updated product details 
+            fm.save()
             return redirect('home')
     else:
-        fm = ProductForm(instance=prod)  #create a form instance with the product data 
+        fm = ProductForm(instance=prod)
 
-    return render(request, 'Electronics/edit.html', {'prod': prod, 'fm': fm}) #render the edit
+    return render(request, 'Electronics/edit_product.html', {'prod': prod, 'fm': fm})
