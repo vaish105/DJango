@@ -3,16 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Delete Product</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: radial-gradient(circle at top, #111 0%, #000 100%);
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #e60012;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .delete-container {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(255, 0, 60, 0.15);
+            backdrop-filter: blur(15px);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(to right, #ff0044, #e60012);
+            color: #fff;
+        }
+
+        button[type="button"] {
+            background: linear-gradient(to right, #00ffe7, #00a3ff);
+            color: #fff;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-
-    <h2> Are you sure you want to delete? </h2>
-    <form method ="POST" action = "{% url 'delete_product' product.id %">
-        {% csrf_token %}
-        <button type ="submit">Yes  </button>
-        <a href="{% url 'home' %}"><button type="button">Cancel</button></a>
-    </form>
-
+    <div class="delete-container">
+        <h2>Are you sure you want to delete?</h2>
+        <form method="POST" action="{% url 'delete_product' product.id %}">
+            {% csrf_token %}
+            <div class="button-group">
+                <button type="submit">Yes</button>
+                <a href="{% url 'home' %}"><button type="button">Cancel</button></a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
