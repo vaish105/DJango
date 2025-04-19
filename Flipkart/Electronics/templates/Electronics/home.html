@@ -197,6 +197,7 @@
           <div class="product-stock">{{item.stock}}</div>
         </div>
         <a href="{% url 'edit_product' item.id %}" class="edit-button">Edit</a>
+        <a href="{% url 'delete_product' item.id %}" class="edit-button">Delete</a>
       </div>
       {% endfor %}
     </div>
